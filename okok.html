@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Predictive Maintenance Agent</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #e5e7eb;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 24px;
+      background: #111827;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #38bdf8;
+    }
+    label {
+      display: block;
+      margin: 8px 0 4px;
+      font-size: 14px;
+      color: #9ca3af;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #374151;
+      background: #020617;
+      color: #e5e7eb;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #38bdf8;
+    }
+    button {
+      margin-top: 16px;
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      background: #22c55e;
+      color: #022c22;
+      font-weight: bold;
+    }
+    button:disabled {
+      background: #4b5563;
+      cursor: not-allowed;
+      color: #9ca3af;
+    }
+    .row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .col {
+      flex: 1 1 260px;
+    }
+    .status {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 6px;
+      background: #020617;
+      border: 1px solid #374151;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .status.ok {
+      border-color: #22c55e;
+    }
+    .status.error {
+      border-color: #ef4444;
+      color: #fecaca;
+    }
+    .audio-player {
+      margin-top: 12px;
+    }
+    a {
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Predictive Maintenance Agent</h1>
+    <p style="color:#9ca3af; margin-top:4px;">
+      Fill in the vehicle details and start a maintenance journey. The backend runs at
+      <code>http://127.0.0.1:5000</code>.
+    </p>
+
+    <div class="row">
+      <div class="col">
+        <label for="ownerName">Owner Name</label>
+        <input id="ownerName" type="text" placeholder="John Doe" value="John Doe" />
+
+        <label for="ownerPhone">Owner Phone (E.164)</label>
+        <input id="ownerPhone" type="text" placeholder="+1-555-0101" value="+1-555-0101" />
+
+        <label for="vehicleId">Vehicle ID</label>
+        <input id="vehicleId" type="text" placeholder="VEH-001" value="VEH-001" />
+      </div>
+      <div class="col">
+        <label for="issue">Predicted Issue</label>
+        <input id="issue" type="text" placeholder="General component wear" value="General component wear" />
+
+        <label for="riskLevel">Risk Level</label>
+        <select id="riskLevel">
+          <option value="low">low</option>
+          <option value="medium">medium</option>
+          <option value="high" selected>high</option>
+          <option value="critical">critical</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="startJourneyBtn">Start Maintenance Journey</button>
+
+    <div id="statusBox" class="status">
+      Backend not called yet.
+    </div>
+
+    <div id="audioContainer" class="audio-player"></div>
+  </div>
+
+  <script>
+    const API_BASE = "http://127.0.0.1:5000"; // Flask backend base URL
+
+    const ownerNameInput = document.getElementById("ownerName");
+    const ownerPhoneInput = document.getElementById("ownerPhone");
+    const vehicleIdInput = document.getElementById("vehicleId");
+    const issueInput = document.getElementById("issue");
+    const riskLevelSelect = document.getElementById("riskLevel");
+    const statusBox = document.getElementById("statusBox");
+    const audioContainer = document.getElementById("audioContainer");
+    const startJourneyBtn = document.getElementById("startJourneyBtn");
+
+    function setStatus(msg, isError = false) {
+      statusBox.textContent = msg;
+      statusBox.classList.remove("ok", "error");
+      if (isError) {
+        statusBox.classList.add("error");
+      } else {
+        statusBox.classList.add("ok");
+      }
+    }
+
+    function renderAudioPlayer(audioUrl) {
+      audioContainer.innerHTML = "";
+      if (!audioUrl) return;
+
+      const label = document.createElement("div");
+      label.textContent = "Generated voice script audio:";
+
+      const audio = document.createElement("audio");
+      audio.controls = true;
+      audio.src = audioUrl;
+
+      audioContainer.appendChild(label);
+      audioContainer.appendChild(audio);
+    }
+
+    async function startJourney() {
+      const ownerName = ownerNameInput.value.trim();
+      const ownerPhone = ownerPhoneInput.value.trim();
+      const vehicleId = vehicleIdInput.value.trim();
+      const issue = issueInput.value.trim();
+      const riskLevel = riskLevelSelect.value;
+
+      if (!ownerName || !ownerPhone || !vehicleId || !issue) {
+        setStatus("Please fill all fields before starting a journey.", true);
+        return;
+      }
+
+      const payload = {
+        ownerName,
+        ownerPhone,
+        vehicleId,
+        issue,
+        riskLevel,
+      };
+
+      setStatus("Calling backend /api/start-journey ...");
+      startJourneyBtn.disabled = true;
+
+      try {
+        const response = await fetch(API_BASE + "/api/start-journey", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          const text = await response.text().catch(() => "");
+          throw new Error("Backend returned " + response.status + ": " + text);
+        }
+
+        const data = await response.json();
+        console.log("Backend response:", data);
+
+        const journeyId = data.journey_id || data.journeyId;
+        const voiceScript = data.voice_script || data.voiceScript || "";
+        const voiceAudioUrl = data.voice_audio_url || data.voiceAudioUrl || "";
+
+        let statusMsg = "Journey started successfully.\n";
+        if (journeyId) statusMsg += "Journey ID: " + journeyId + "\n";
+        if (data.status) statusMsg += "Status: " + data.status + "\n";
+        if (data.booking_confirmed !== undefined) {
+          statusMsg += "Booking confirmed: " + data.booking_confirmed + "\n";
+        }
+        if (data.declined !== undefined) {
+          statusMsg += "Declined: " + data.declined + "\n";
+        }
+        if (voiceScript) {
+          statusMsg += "\nVoice script:\n" + voiceScript;
+        }
+        setStatus(statusMsg, false);
+
+        if (voiceAudioUrl) {
+          renderAudioPlayer(voiceAudioUrl);
+        } else {
+          audioContainer.innerHTML = "";
+        }
+      } catch (err) {
+        console.error(err);
+        setStatus("Could not connect to backend or error occurred.\n" + err.message, true);
+        audioContainer.innerHTML = "";
+      } finally {
+        startJourneyBtn.disabled = false;
+      }
+    }
+
+    startJourneyBtn.addEventListener("click", () => {
+      startJourney();
+    });
+  </script>
+</body>
+</html>
