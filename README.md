@@ -1,189 +1,262 @@
-🚀 Autonomous Predictive Maintenance System
-AI-Driven Fleet Brain for Real-Time Vehicle Health Monitoring
+🚀 Autonomous Predictive Bike Maintenance — Agentic AI System
+🏍️ Prevent Failures Before They Happen: 200–500 km Early
 
+A next-generation agentic AI platform that predicts critical two-wheeler failures in advance, turning emergency breakdowns into planned, low-cost maintenance.
 
+This system supports individual riders, workshops, fleets, and OEMs, running entirely as a scalable cloud service.
 
+⚠️ The Problem (₹198B Lost Annually)
+India’s Two-Wheeler Crisis by the Numbers
 
-![Adobe Express - Autonomous Predictive Maintainence Video](https://github.com/user-attachments/assets/e2057b39-ed7c-47a0-a74f-c106283b13a9)
+124 million riders depend on 2-wheelers daily
 
+₹198 billion annual productivity loss from breakdowns
 
+1,000–2,000 preventable deaths/year linked to maintenance failures
 
+Income loss for gig workers & delivery riders
 
+High repair costs due to avoidable major failures
 
+Roadside emergencies → unsafe + expensive + stressful
 
+Breakdowns are predictable — but today, they are not predicted.
 
-🔑 API Key Setup (IMPORTANT)
+🎯 Proposed Solution: Agentic AI for Predictive Bike Maintenance
 
-If your project uses an external API (OpenAI, Gemini, Map APIs, IoT Cloud APIs, etc.), users must add their own API key.
+An agentic AI system that predicts failures 200–500 km before they occur using telemetry, driving patterns, and historical data.
 
-✅ Where to put the API key
+The system automatically:
 
-Inside the project, locate the file:
+Detects early-warning patterns
+
+Predicts component failure risk
+
+Estimates remaining life (ETA to failure)
+
+Suggests required actions
+
+Auto-books service appointments
+
+Notifies rider + workshop
+
+Reduces repair cost & eliminates surprise breakdowns
+
+🧠 How It Works
+1️⃣ Input Sources
+
+Telematics / IoT sensor data (temperature, vibration, RPM, speed, GPS)
+
+Rider behavior (routes, harsh braking, daily km)
+
+Service history & warranty data
+
+Environmental factors (dust, humidity, terrain)
+
+2️⃣ Processing Pipeline
+📥 Data Ingestion Layer
+
+Streams data from IoT devices, telematics APIs, OBD, or mobile app
+
+⚙️ Feature Engineering
+
+Component stress analysis
+
+Riding-pattern risk metrics
+
+Time-series features
+
+Environment-adjusted wear factors
+
+🤖 ML Risk Scoring
+
+XGBoost / LightGBM models
+
+Anomaly detection for vibration, heat, noise
+
+Failure-ETA prediction (remaining km before failure)
+
+🧩 LLM + Agent Layer
+
+LangChain-style agents for decision-making
+
+LLM explanations: “Why this failure is likely”
+
+Auto-service scheduling agent
+
+Diagnostic reasoner: component-level root cause
+
+📤 Output
+
+Component-wise risk score
+
+ETA to failure
+
+Recommended action
+
+Automatic notifications + booking
+
+💻 Tech Stack
+Backend
+
+Python
+
+Flask / FastAPI
+
+REST APIs (JSON)
+
+Machine Learning
+
+Scikit-learn
+
+XGBoost / LightGBM
+
+Time-series forecasting
+
+Anomaly detection models
+
+LLM + Agent Layer
+
+LangChain-style orchestration
+
+RAG for service history retrieval
+
+GPT-4-class / DeepSeek-chat-class reasoning models
+
+Data & Infrastructure
+
+PostgreSQL (structured data)
+
+Redis (caching, queues)
+
+Docker containers
+
+Cloud deployment (scales automatically)
+
+Integrations with:
+
+Telematics/IoT APIs
+
+Workshop CRM
+
+Booking systems
+
+WhatsApp/SMS alerts
+
+Web dashboard
+
+📈 Scalability
+
+The platform is designed using a microservices + event-driven architecture, enabling:
+
+Start with a pilot of a few hundred vehicles
+
+Seamlessly scale to millions of vehicles
+
+Add compute nodes without changing core code
+
+Independent services communicate via APIs
+
+Zero downtime during updates
+
+Predictive models retrain automatically as data grows
+
+Scalability = more bikes, not more complexity.
+
+🧪 Demo / UI Preview
+
+(Add GIF or screenshots from your project here)
+
+assets/demo.gif
+
+📁 Repository Structure
+├── index.html
+├── api/
+│   └── predictive_service.py
+├── ml/
+│   ├── model.pkl
+│   ├── feature_engineering.py
+│   └── train_model.py
+├── agents/
+│   ├── scheduler_agent.py
+│   ├── diagnostic_agent.py
+│   └── llm_explainer.py
+├── scripts/
+│   ├── fleet-scanner.js
+│   ├── engine-visualizer.js
+│   ├── predictive-model.js
+│   ├── config.js                ← API key goes here
+│   └── config.example.js
+├── assets/
+│   ├── images/
+│   ├── animations/
+│   └── styles/
+├── data/
+├── README.md
+
+▶️ Local Setup
+1️⃣ Clone the repository
+git clone https://github.com/yourusername/predictive-bike-maintenance.git
+cd predictive-bike-maintenance
+
+2️⃣ Install backend dependencies
+pip install -r requirements.txt
+
+3️⃣ Run backend
+python api/predictive_service.py
+
+4️⃣ Start frontend
+
+Open index.html
+—or—
+
+npx serve
+
+🔑 API Key Setup (Important — Place at the End)
+
+Different parts of the system may use external APIs (LLMs, telematics, mapping, communication).
+Users must add their own API keys.
+
+📍 Where to put your API key
+
+Your key goes into:
 
 /scripts/config.js
 
-
-In that file, replace the placeholder with your own API key:
-
+Example:
 // scripts/config.js
 
 export const CONFIG = {
-    API_KEY: "YOUR_API_KEY_HERE",   // ← Replace with your key
-    MODEL: "your-model-name",       // Optional
+    OPENAI_KEY: "YOUR_API_KEY_HERE",
+    OTHER_API_KEY: "",
 };
 
-If config.js does not exist yet
+📋 Template file (recommended)
 
-Create it:
+Provide:
 
-/scripts/config.js
-
-
-And add:
+scripts/config.example.js
 
 export const CONFIG = {
-    API_KEY: "YOUR_API_KEY_HERE",
+    OPENAI_KEY: "PUT_YOUR_API_KEY_HERE",
 };
 
-⚠️ WARNING — Do NOT commit real keys
 
-To protect users:
+Users then run:
 
-.gitignore should include:
+cp scripts/config.example.js scripts/config.js
+
+⚠️ Do NOT commit real API keys
+
+Add to .gitignore:
 
 config.js
 .env
 
+🤝 Contributing
 
-Add a template file instead:
+PRs, ideas, models, and UI improvements are welcome!
 
-config.example.js
+📄 License
 
-export const CONFIG = {
-    API_KEY: "PUT_YOUR_API_KEY_HERE",
-};
-
-
-Users copy this:
-
-cp scripts/config.example.js scripts/config.js
-
-
-And then insert their own key locally.
-
-🎯 Features
-
-✔️ Autonomous fleet scanning
-✔️ Real-time vehicle diagnostics
-✔️ Predictive maintenance alerts
-✔️ Animated engine visualization
-✔️ Lightweight and mechanic-friendly UI
-✔️ IoT-ready telemetry pipeline
-
-🛠️ Tech Stack
-
-Frontend: HTML, CSS, JavaScript
-
-Visualization: Canvas/Web Animations
-
-AI/ML: Predictive models
-
-Optional Backend: Node.js / Python
-
-IoT Sensors Supported: RPM, vibration, temperature, OBD-II
-
-⚡ Setup Instructions
-1️⃣ Clone repo
-git clone https://github.com/yourusername/autonomous-predictive-maintenance.git
-cd autonomous-predictive-maintenance
-
-2️⃣ Add your API key
-
-Copy template:
-
-cp scripts/config.example.js scripts/config.js
-
-
-Edit config.js and insert your API key.
-
-3️⃣ Run locally
-
-Just open:
-
-index.html
-
-
-Or run a simple server:
-
-npx serve
-
-
-
-🎬 Demo
-
-Include your video or GIF here:
-
-
-
-https://github.com/user-attachments/assets/b3124a4a-844c-4c2c-bc8c-f05c4a9481f0
-
-
-
-
-Or embed:
-
-![Adobe Express - Autonomous Predictive Maintainence Video (2)](https://github.com/user-attachments/assets/dcc766b6-7cc2-417d-9692-bef3c736888a)
-
-
-⚡ How It Works
-1. Scan Fleet
-
-User clicks SCAN FLEET → system enumerates all connected vehicles.
-
-2. AI Health Check
-
-Telemetry is analyzed using ML models such as:
-
-LSTM for anomaly detection
-
-Random Forest for failure classification
-
-Regression models for life-cycle prediction
-
-3. Visualization Layer
-
-Engine & components are overlayed with animated wireframes (like in your GIF).
-
-4. Predictive Alerts
-
-User receives alerts such as:
-
-“High vibration detected → Probable bearing wear in 5 days”
-
-“Engine overheating trend → Check coolant system”
-
-🔧 Installation
-Clone the repository
-git clone https://github.com/yourusername/autonomous-predictive-maintenance.git
-cd autonomous-predictive-maintenance
-
-Run locally
-
-Just open index.html in a browser
-—or—
-serve using a lightweight server:
-
-npx serve
-
-🚀 Future Enhancements
-
-Mobile app with offline diagnostics
-
-OBD-II real-time streaming
-
-Full 3D engine mapping
-
-Integration with AWS IoT / GCP IoT Core
-
-Advanced LLM-powered mechanic assistant
-
+MIT License.
