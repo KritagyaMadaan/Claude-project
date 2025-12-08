@@ -1,11 +1,13 @@
-🚀 Autonomous Predictive Bike Maintenance — Agentic AI System
+🚀 **Autonomous Predictive Bike Maintenance — Agentic AI System**
+
 🏍️ Prevent Failures Before They Happen: 200–500 km Early
 
 A next-generation agentic AI platform that predicts critical two-wheeler failures in advance, turning emergency breakdowns into planned, low-cost maintenance.
 
 This system supports individual riders, workshops, fleets, and OEMs, running entirely as a scalable cloud service.
 
-⚠️ The Problem (₹198B Lost Annually)
+
+⚠️ **The Problem (₹198B Lost Annually)**
 India’s Two-Wheeler Crisis by the Numbers
 
 124 million riders depend on 2-wheelers daily
@@ -22,7 +24,8 @@ Roadside emergencies → unsafe + expensive + stressful
 
 Breakdowns are predictable — but today, they are not predicted.
 
-🎯 Proposed Solution: Agentic AI for Predictive Bike Maintenance
+
+🎯** Proposed Solution: Agentic AI for Predictive Bike Maintenance**
 
 An agentic AI system that predicts failures 200–500 km before they occur using telemetry, driving patterns, and historical data.
 
@@ -42,7 +45,8 @@ Notifies rider + workshop
 
 Reduces repair cost & eliminates surprise breakdowns
 
-🧠 How It Works
+
+🧠 **How It Works**
 1️⃣ Input Sources
 
 Telematics / IoT sensor data (temperature, vibration, RPM, speed, GPS)
@@ -96,7 +100,8 @@ Recommended action
 
 Automatic notifications + booking
 
-💻 Tech Stack
+💻 **Tech Stack**
+
 Backend
 
 Python
@@ -145,7 +150,8 @@ WhatsApp/SMS alerts
 
 Web dashboard
 
-📈 Scalability
+
+📈 **Scalability**
 
 The platform is designed using a microservices + event-driven architecture, enabling:
 
@@ -163,38 +169,23 @@ Predictive models retrain automatically as data grows
 
 Scalability = more bikes, not more complexity.
 
-🧪 Demo / UI Preview
+🧪 **Demo / UI Preview**
+![Adobe Express - Autonomous Predictive Maintainence Video](https://github.com/user-attachments/assets/feb714a2-44d8-4fca-88f4-d8ab041e3884)
 
-(Add GIF or screenshots from your project here)
+![Adobe Express - Autonomous Predictive Maintainence Video (2)](https://github.com/user-attachments/assets/b911afc8-0795-4661-bb3e-e8273b54a854)
 
-assets/demo.gif
 
-📁 Repository Structure
-├── index.html
-├── api/
-│   └── predictive_service.py
-├── ml/
-│   ├── model.pkl
-│   ├── feature_engineering.py
-│   └── train_model.py
-├── agents/
-│   ├── scheduler_agent.py
-│   ├── diagnostic_agent.py
-│   └── llm_explainer.py
-├── scripts/
-│   ├── fleet-scanner.js
-│   ├── engine-visualizer.js
-│   ├── predictive-model.js
-│   ├── config.js                ← API key goes here
-│   └── config.example.js
-├── assets/
-│   ├── images/
-│   ├── animations/
-│   └── styles/
-├── data/
-├── README.md
+https://github.com/user-attachments/assets/16364193-4500-4c3e-b5e7-384885e14256
 
-▶️ Local Setup
+
+
+Uploading Autonomous Predictive Maintainence Video.mp4…
+
+
+
+
+
+▶️ **Local Setup**
 1️⃣ Clone the repository
 git clone https://github.com/yourusername/predictive-bike-maintenance.git
 cd predictive-bike-maintenance
@@ -212,7 +203,7 @@ Open index.html
 
 npx serve
 
-🔑 API Key Setup (Important — Place at the End)
+🔑** API Key Setup (Important — Place at the End)**
 
 Different parts of the system may use external APIs (LLMs, telematics, mapping, communication).
 Users must add their own API keys.
@@ -253,10 +244,3 @@ Add to .gitignore:
 config.js
 .env
 
-🤝 Contributing
-
-PRs, ideas, models, and UI improvements are welcome!
-
-📄 License
-
-MIT License.
