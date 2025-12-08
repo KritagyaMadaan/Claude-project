@@ -1,4 +1,4 @@
-🚀 ## **Autonomous Predictive Bike Maintenance — Agentic AI System**
+🚀 # **Autonomous Predictive Bike Maintenance — Agentic AI System**
 
 🏍️ Prevent Failures Before They Happen: 200–500 km Early
 
@@ -47,7 +47,7 @@ Reduces repair cost & eliminates surprise breakdowns
 
 
 🧠 # **How It Works**
-1️⃣ ## Input Sources
+1️⃣ # Input Sources
 
 Telematics / IoT sensor data (temperature, vibration, RPM, speed, GPS)
 
@@ -57,12 +57,12 @@ Service history & warranty data
 
 Environmental factors (dust, humidity, terrain)
 
-2️⃣ ## Processing Pipeline
+2️⃣ # Processing Pipeline
 📥 Data Ingestion Layer
 
 Streams data from IoT devices, telematics APIs, OBD, or mobile app
 
-⚙️ ### Feature Engineering
+⚙️ # Feature Engineering
 
 Component stress analysis
 
@@ -72,7 +72,7 @@ Time-series features
 
 Environment-adjusted wear factors
 
-🤖 ### ML Risk Scoring
+🤖 # ML Risk Scoring
 
 XGBoost / LightGBM models
 
@@ -80,7 +80,7 @@ Anomaly detection for vibration, heat, noise
 
 Failure-ETA prediction (remaining km before failure)
 
-🧩 ### LLM + Agent Layer
+🧩 # LLM + Agent Layer
 
 LangChain-style agents for decision-making
 
@@ -90,7 +90,7 @@ Auto-service scheduling agent
 
 Diagnostic reasoner: component-level root cause
 
-📤 ### Output
+📤 # Output
 
 Component-wise risk score
 
