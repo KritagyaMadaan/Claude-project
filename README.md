@@ -10,7 +10,7 @@ https://github.com/user-attachments/assets/bc5f4e2f-7551-4d6f-9512-16834ed5387d
 
 
 
-🚀 # **Autonomous Predictive Bike Maintenance — Agentic AI System**
+# **Autonomous Predictive Bike Maintenance — Agentic AI System**
 
 🏍️ Prevent Failures Before They Happen: 200–500 km Early
 
