@@ -4,7 +4,11 @@ https://github.com/user-attachments/assets/16364193-4500-4c3e-b5e7-384885e14256
 
 ![Adobe Express - Autonomous Predictive Maintainence Video (2)](https://github.com/user-attachments/assets/b911afc8-0795-4661-bb3e-e8273b54a854)
 
-![Adobe Express - Autonomous Predictive Maintainence Video](https://github.com/user-attachments/assets/feb714a2-44d8-4fca-88f4-d8ab041e3884)
+
+https://github.com/user-attachments/assets/bc5f4e2f-7551-4d6f-9512-16834ed5387d
+
+
+
 
 🚀 # **Autonomous Predictive Bike Maintenance — Agentic AI System**
 
